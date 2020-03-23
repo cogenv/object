@@ -1,0 +1,39 @@
+{
+   "name": "@cogenv/object",
+   "version": "1.0.8",
+   "description": "Parsed as object !",
+   "main": "dist/index.js",
+   "type": "dist/index.d.ts",
+   "scripts": {
+      "dev": "yarn prebuild & tsc -w",
+      "dev:start": "nodemon dist/index.js",
+      "build": "yarn prebuild & tsc",
+      "build:start": "yarn build & yarn start",
+      "start": "node dist/index.js",
+      "prebuild": "rimraf dist",
+      "demo": "nodemon demo.js",
+      "demo:start": "node demo.js"
+   },
+   "devDependencies": {
+      "@types/node": "^13.9.0",
+      "nodemon": "^2.0.2",
+      "prettier": "^1.19.1",
+      "rimraf": "^3.0.2"
+   },
+   "dependencies": {
+      "merge-options-default": "^1.0.1"
+   },
+   "repository": {
+      "type": "git",
+      "url": "https://github.com/cogenv/object"
+   },
+   "keywords": [
+      "dotenv",
+      "cogenv",
+      "envirements",
+      "cogenv/object",
+      "object-parser"
+   ],
+   "author": "Yoni Calsin <helloyonicb@gmail.com>",
+   "license": "MIT"
+}
