@@ -1,0 +1,15 @@
+# Folders
+/.vscode
+/src
+
+/changelog.config.js
+
+# Files
+.env
+.gitignore
+.prettierrc.js
+changelog.config.js
+tsconfig.json
+
+# Developments
+demo.js
