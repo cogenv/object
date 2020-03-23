@@ -1,4 +1,12 @@
-## @cogenv/object
+# @cogenv/object
+
+-  [Description](#Description)
+-  [Installation](#-installation)
+-  [Usage](#-usage)
+-  [Example](#example)
+-  [Typescript](#typescript)
+
+## Description
 
 **cogenv/object** es un plugin para `@cogenv/core` para manejar objetos dentro de las variables de entorno, se creo con la intencion de agregar funciones mas geniales para manejar las variables de entorno, pero si uste quiere algo mas completo, te recomiendo que utilices el paquete `cogenv` que trae todo completo y robusto por ejemplo: el manejo de tipos de datos !, manejador de objetos, y mucho mas ! ; y por supuesto este paquete sera incluida en `cogenv` asique tendra todas las funciones de este incluidas dentro del paquete `cogenv`.
 
@@ -76,6 +84,8 @@ Esto retornara asi !
 }
 ```
 
+## Example
+
 Wooow, esto es genial, cierto ?, bueno ahora te enseñare a como configurar para poder tener el resulta tan genial que tuvimos previamente !
 
 ```js
@@ -91,6 +101,8 @@ Cogenv.Config({
 // Ahor solo pasaremos CogenvObject como un plugin !
 Cogenv.Use(CogenvObject);
 ```
+
+## Typescript
 
 Hummm si te preguntas como integrar con typescript, tenemos una solucion para ti !
 
@@ -109,10 +121,30 @@ Use(CogenvObject);
 Y ahora podra utilizar mediante el variable `cog` de la siguiente manera !
 
 ```ts
-const github = log.env.AUTHOR.socials.github.link;
+const github = cog.env.AUTHOR;
 
 console.log(github);
-// It will return "https://github.com/yoicalsin"
+// It will return
+/*
+{
+   "name": { "first": "Yoni", "last": "Calsin" },
+   "country": { "name": "Peru", "code": "PE" },
+   "socials": {
+      "github": {
+         "username": "@yoicalsin",
+         "link": "https://github.com/yoicalsin"
+      },
+      "twitter": {
+         "username": "@yoicalsin",
+         "link": "https://github.com/yoicalsin"
+      },
+      "instagram": {
+         "username": "@yoicalsin",
+         "link": "https://github.com/yoicalsin"
+      }
+   }
+}
+*/
 ```
 
 ## ⭐ Support for
