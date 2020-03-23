@@ -2,6 +2,13 @@ interface More {
    [key: string]: any;
 }
 
+const IsObject = (src: any): boolean => {
+   if (toString.call(src) === '[object Object]') {
+      return true;
+   }
+   return false;
+};
+
 const ParseLine = (source: string, value?: string) => {
    let item = {};
    const arr = source.split(/\-\>/gi);
