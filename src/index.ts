@@ -9,3 +9,6 @@ const ParseLine = (source: string, value?: string) => {
    item[a] = ParseLine(r.join('->'), value);
    return item;
 };
+
+export { ParseLine };
+export default CogenvObject;
