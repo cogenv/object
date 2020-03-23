@@ -65,5 +65,5 @@ const CogenvObject = (data: More, register: Function) => {
    return payload;
 };
 
-export { ParseLine };
+export { ParseLine, CogenvObject };
 export default CogenvObject;
