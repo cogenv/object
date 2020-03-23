@@ -1,3 +1,7 @@
+interface More {
+   [key: string]: any;
+}
+
 const ParseLine = (source: string, value?: string) => {
    let item = {};
    const arr = source.split(/\-\>/gi);
