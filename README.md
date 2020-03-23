@@ -1,8 +1,12 @@
 ## @cogenv/object
 
-**@cogenv/object** is an environment variable manager, and this package belongs to its main `cogenv` package, but if you want to use only this package, here below you will have the documentation, and if you are looking for something more robust and complete, we recommend using the main `cogenv` package.
+**cogenv/object** es un plugin para `@cogenv/core` para manejar objetos dentro de las variables de entorno, se creo con la intencion de agregar funciones mas geniales para manejar las variables de entorno, pero si uste quiere algo mas completo, te recomiendo que utilices el paquete `cogenv` que trae todo completo y robusto por ejemplo: el manejo de tipos de datos !, manejador de objetos, y mucho mas ! ; y por supuesto este paquete sera incluida en `cogenv` asique tendra todas las funciones de este incluidas dentro del paquete `cogenv`.
+
+Para poder leer las variables de entorno con `@cogenv/core` es mediante una variable global llamada `cog` que contiene basicamente los igual que `process`, pero `cog.env` obtiene las variables de entorno generados por `@cogenv`.
 
 ## 📦 Installation
+
+Para poder utilizar este plugin, primero tendremos que tener instalado `@cogenv/core` y luego instalaremos este paquete (@cogenv/object) !
 
 ```bash
 npm i --save @cogenv/object
@@ -10,93 +14,105 @@ npm i --save @cogenv/object
 
 ## ▶️ Usage
 
-Created `.cogenv` or `.env` file !
+Primeramente y obligatoriamente tendremos que crear un archivo con cualquiera de estos siguientes nombres o podria personalizar mediante la opcion de `path` que requiere la function `Config()` de @cogenv/core; `.cogenv` o `.env` file !
+
+Los siguientes datos utilizaremos como ejemplo !
 
 ```bash
-# Application Data !
-APP_NAME = Application
-APP_PORT = 3000
-APP_URL = http://website.com
+# Datos para nuestro ejemplo
+
+APP->name=Application
+APP->port=3000
+
+DB->dialect=mysql
+DB->localhost=localhost
+DB->user=root
+DB->password=
+
+# Probemos algo mas complicado
+
+AUTHOR->name->first = Yoni
+AUTHOR->name->last = Calsin
+AUTHOR->country->name = Peru
+AUTHOR->country->code = PE
+AUTHOR->socials->github->username = @yoicalsin
+AUTHOR->socials->github->link = https://github.com/yoicalsin
+AUTHOR->socials->twitter->username = @yoicalsin
+AUTHOR->socials->twitter->link = https://github.com/yoicalsin
+AUTHOR->socials->instagram->username = @yoicalsin
+AUTHOR->socials->instagram->link = https://github.com/yoicalsin
+
 ```
 
-```js
-const CogenvConfig = require('@cogenv/object');
+Esto retornara asi !
 
-// Called function !
-CogenvConfig();
-
-// Log !
-const data = cogenv.env.APP_NAME;
-console.log(data);
-/* Return:
+```json
 {
-   APP_NAME: "Application",
-   APP_PORT: "3000",
-   APP_URL: "http://website.com"
+   "APP": { "name": "Application", "port": "3000" },
+   "DB": {
+      "dialect": "mysql",
+      "localhost": "localhost",
+      "user": "root",
+      "password": ""
+   },
+   "AUTHOR": {
+      "name": { "first": "Yoni", "last": "Calsin" },
+      "country": { "name": "Peru", "code": "PE" },
+      "socials": {
+         "github": {
+            "username": "@yoicalsin",
+            "link": "https://github.com/yoicalsin"
+         },
+         "twitter": {
+            "username": "@yoicalsin",
+            "link": "https://github.com/yoicalsin"
+         },
+         "instagram": {
+            "username": "@yoicalsin",
+            "link": "https://github.com/yoicalsin"
+         }
+      }
+   }
 }
-*/
 ```
 
-If you want to add types to the data, we recommend using the main `cogenv` package.
-
-### Options
-
-| name      | type              | default  |
-| --------- | ----------------- | -------- |
-| path      | string            | `.env`   |
-| encoding  | string            | `utf8`   |
-| matchLine | `normal` \| `all` | `normal` |
-
-### Customize path
-
-To customize the environment variable file it is very easy with `@cogenv/object`, by default it is _`.env`_.
+Wooow, esto es genial, cierto ?, bueno ahora te enseñare a como configurar para poder tener el resulta tan genial que tuvimos previamente !
 
 ```js
-const CogenvConfig = require('@cogenv/object');
+const Cogenv = require('@cogenv/core');
+const CogenvObject = require('@cogenv/object').CogenvObject;
 
-CogenvConfig({
-   path: '.cogenv',
+// Primero instanciaremos la funcion Config() para obtener las variables de entorno !
+Cogenv.Config({
+   // Para obtener los tipos de objetos en un param _objects
+   objects: true, // Default: false
 });
+
+// Ahor solo pasaremos CogenvObject como un plugin !
+Cogenv.Use(CogenvObject);
 ```
 
-### Interpolate or expand
+Hummm si te preguntas como integrar con typescript, tenemos una solucion para ti !
 
-To expand the variables between them, it is as follows !
+```ts
+// For typescript and ES7+
+import { Config, Use } from '@cogenv/core';
+import { CogenvObject } from '@cogenv/object';
 
-To interpolate it is used the following **`${`variable_name`}`**
-
-```bash
-# Application Data !
-APP_NAME = Application
-APP_PORT = 3000
-APP_URL = http://website.com:${APP_PORT}
-# Return: http://website.com:3000
-```
-
-To interpolate we have some options !
-
-| name              | type     | default |
-| ----------------- | -------- | ------- |
-| interpolatePrefix | `string` | `$`     |
-
-Ejemplo:
-
-```js
-const CogenvConfig = require('@cogenv/object');
-
-CogenvConfig({
-   interpolatePrefix: '%', // %{variable_name}
+Config({
+   objects: true,
 });
+
+Use(CogenvObject);
 ```
 
-In the environment variables file it would look like this !
+Y ahora podra utilizar mediante el variable `cog` de la siguiente manera !
 
-```bash
-# Application Data !
-APP_NAME = Application
-APP_PORT = 3000
-APP_URL = http://website.com:%{APP_PORT}
-# Return: http://website.com:3000
+```ts
+const github = log.env.AUTHOR.socials.github.link;
+
+console.log(github);
+// It will return "https://github.com/yoicalsin"
 ```
 
 ## ⭐ Support for
