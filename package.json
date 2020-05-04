@@ -1,6 +1,6 @@
 {
    "name": "@cogenv/object",
-   "version": "1.0.8",
+   "version": "1.0.9",
    "description": "Parsed as object !",
    "main": "dist/index.js",
    "type": "dist/index.d.ts",
@@ -21,7 +21,7 @@
       "rimraf": "^3.0.2"
    },
    "dependencies": {
-      "merge-all-objects": "^1.0.0"
+      "merge-all-objects": "^1.0.1"
    },
    "repository": {
       "type": "git",
