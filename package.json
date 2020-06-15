@@ -38,6 +38,6 @@
       "rimraf": "^3.0.2"
    },
    "peerDependencies": {
-      "@cogenv/core": "^1.1.2"
+      "@cogenv/core": "^1.1.3"
    }
 }

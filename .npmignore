@@ -6,6 +6,8 @@
 .gitignore
 .prettierrc.js
 tsconfig.json
+index.ts
+yarn.lock
 
 # Developments
 demo.js
