@@ -4,3 +4,5 @@
 
 # Files
 .env
+index.js
+index.d.ts
