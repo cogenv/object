@@ -28,6 +28,7 @@
       "start": "node index.js"
    },
    "dependencies": {
+      "dotfast": "^1.0.3",
       "merge-all-objects": "^1.0.4"
    },
    "devDependencies": {
