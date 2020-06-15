@@ -2,17 +2,33 @@
    "name": "@cogenv/object",
    "version": "1.1.0",
    "description": "Parsed as object !",
-   "main": "index.js",
+   "keywords": [
+      "dotenv",
+      "cogenv",
+      "envirements",
+      "cogenv/object",
+      "object-parser"
+   ],
+   "repository": {
+      "type": "git",
+      "url": "https://github.com/cogenv/object"
+   },
+   "license": "MIT",
+   "author": "Yoni Calsin <helloyonicb@gmail.com>",
    "type": "index.d.ts",
+   "main": "index.js",
    "scripts": {
-      "dev": "yarn prebuild & tsc -w",
-      "dev:start": "nodemon index.js",
+      "prebuild": "rimraf index.js && rimraf index.d.ts",
       "build": "yarn prebuild & tsc",
       "build:start": "yarn build & yarn start",
-      "start": "node index.js",
-      "prebuild": "rimraf index.js && rimraf index.d.ts",
       "demo": "nodemon demo.js",
-      "demo:start": "node demo.js"
+      "demo:start": "node demo.js",
+      "dev": "yarn prebuild & tsc -w",
+      "dev:start": "nodemon index.js",
+      "start": "node index.js"
+   },
+   "dependencies": {
+      "merge-all-objects": "^1.0.4"
    },
    "devDependencies": {
       "@types/node": "^14.0.13",
@@ -21,22 +37,6 @@
       "prettier-plugin-packagejson": "^2.2.5",
       "rimraf": "^3.0.2"
    },
-   "dependencies": {
-      "merge-all-objects": "^1.0.4"
-   },
-   "repository": {
-      "type": "git",
-      "url": "https://github.com/cogenv/object"
-   },
-   "keywords": [
-      "dotenv",
-      "cogenv",
-      "envirements",
-      "cogenv/object",
-      "object-parser"
-   ],
-   "author": "Yoni Calsin <helloyonicb@gmail.com>",
-   "license": "MIT",
    "peerDependencies": {
       "@cogenv/core": "^1.1.1"
    }
