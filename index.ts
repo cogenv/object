@@ -20,6 +20,9 @@ const CogenvObject = (data: More, register: Function) => {
    register({
       name: '@cogenv/object',
       version: '1.0.0',
+      mergeOptions: {
+         removedKeys: [/^\s*([\w.-]+)[:]\s*([a-z]+)\s*/, '_objects'],
+      },
    });
 
    if (!data._objects) {
